@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 2233901662
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6a093412a6cd1e6bf8aee1868b0634e9
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3c70e96152a19a1e90a6657916ab8f86
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/MenuLayout.prefab
+Dependencies: []
