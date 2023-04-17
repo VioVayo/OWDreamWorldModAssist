@@ -1,9 +1,8 @@
-﻿//using HarmonyLib;
+﻿using HarmonyLib;
 using OWML.ModHelper;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-//using System.Reflection;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,7 +26,7 @@ namespace DWModAssist
                 new RelativeLocationData(new Vector3(-61, 10.2f, 38.5f), new Quaternion(0, -0.4f, 0, 0.9f), Vector3.zero), //RaftProjector
                 new RelativeLocationData(new Vector3(5, 13.2f, 110), new Quaternion(0, 0.4f, 0, -0.9f), Vector3.zero), //Bridge
                 new RelativeLocationData(new Vector3(-115, 11.5f, 137), new Quaternion(0, 0.7f, 0, 0.7f), Vector3.zero), //Village
-                new RelativeLocationData(new Vector3(55, 11.2f, 170), new Quaternion(0, 0.9f, 0, 0.5f), Vector3.zero), //OutsidePartyHouse
+                new RelativeLocationData(new Vector3(55, 11.2f, 170), new Quaternion(0, 0.9f, 0, 0.5f), Vector3.zero), //PartyOutside
                 new RelativeLocationData(new Vector3(117, 19.25f, 167), new Quaternion(0, 0.5f, 0, 0.9f), Vector3.zero) //ArchiveElevator
             }, 
             locationsZone2 =
@@ -36,7 +35,7 @@ namespace DWModAssist
                 new RelativeLocationData(new Vector3(-38, -2.5f, 2), new Quaternion(0, 0.6f, 0, 0.8f), Vector3.zero), //RaftProjector
                 new RelativeLocationData(new Vector3(48.5f, 21.25f, 153), new Quaternion(0, 0.6f, 0, 0.8f), Vector3.zero), //LightsProjector
                 new RelativeLocationData(new Vector3(5.5f, 30f, 0.5f), new Quaternion(0, 0.7f, 0, -0.7f), Vector3.zero), //SecretTowerRoom
-                new RelativeLocationData(new Vector3(59, -2.5f, 182), new Quaternion(0, 0.5f, 0, 0.9f), Vector3.zero), //RaftToBurntHouse
+                new RelativeLocationData(new Vector3(59, -2.5f, 182), new Quaternion(0, 0.5f, 0, 0.9f), Vector3.zero), //BurntHouseRaft
                 new RelativeLocationData(new Vector3(-7.3f, -20, 105), new Quaternion(0, 0.1f, 0, -1), Vector3.zero), //Underground
                 new RelativeLocationData(new Vector3(-35, -56.75f, 216), new Quaternion(0, 0.1f, 0, -1), Vector3.zero) //ArchiveElevator
             }, 
@@ -51,9 +50,9 @@ namespace DWModAssist
             }, 
             locationsZone4 =
             {
-                new RelativeLocationData(new Vector3(0, 1, -2), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFireChamber
-                new RelativeLocationData(new Vector3(10.5f, -17.75f, 62.5f), new Quaternion(0, 0.9f, 0, 0.4f), Vector3.zero), //RaftProjectorOutside
-                new RelativeLocationData(new Vector3(23, -309.25f, 0), new Quaternion(0, -0.7f, 0, 0.7f), Vector3.zero), //VaultOpeningMechanism
+                new RelativeLocationData(new Vector3(0, 1, -2), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFire
+                new RelativeLocationData(new Vector3(10.5f, -17.75f, 62.5f), new Quaternion(0, 0.9f, 0, 0.4f), Vector3.zero), //RaftProjector
+                new RelativeLocationData(new Vector3(23, -309.25f, 0), new Quaternion(0, -0.7f, 0, 0.7f), Vector3.zero), //VaultOutside
                 new RelativeLocationData(new Vector3(76, -309, 64), new Quaternion(0, 0.9f, 0, -0.4f), Vector3.zero), //LockProjector1
                 new RelativeLocationData(new Vector3(99.5f, -313.25f, 0), new Quaternion(0, -0.7f, 0, 0.7f), Vector3.zero), //LockProjector2
                 new RelativeLocationData(new Vector3(77.5f, -308.75f, -65), new Quaternion(0, -0.4f, 0, 0.9f), Vector3.zero), //LockProjector3
@@ -66,7 +65,7 @@ namespace DWModAssist
             {
                 ("Open Raft Dock", OpenZone1Dock),
                 ("Create All Bridges", MakeZone1Bridges),
-                ("Extinguish Fire >:C", ExtinguishZone1Fire)
+                ("Extinguish Fire >:c", ExtinguishZone1Fire)
             },
             zone2AlterStates =
             {
@@ -83,8 +82,6 @@ namespace DWModAssist
             {
                 ("Open Sealed Vault", OpenVault)
             };
-
-        public static SubmitActionCloseMenu ClosePauseMenuAction;
 
         private static GameObject itemDropSocket;
         private static DreamLanternItem lantern;
@@ -115,15 +112,17 @@ namespace DWModAssist
             lock2Projector,
             lock3Projector;
 
-        private bool warping = false;
+        public static PlayerAttachPoint CurrentAttachPoint;
 
+
+        private void Awake()
+        {
+            ModInstance = this;
+            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
+        }
 
         private void Start()
         {
-            ModInstance = this;
-            //Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
-
-
             LoadManager.OnCompleteSceneLoad += (scene, loadScene) => 
             {
                 if (loadScene != OWScene.SolarSystem) return;
@@ -135,19 +134,12 @@ namespace DWModAssist
             {
                 if (LoadManager.GetCurrentScene() != OWScene.SolarSystem) return;
                 var warpButton = ModHelper.Menus.PauseMenu.OptionsButton.Duplicate("DW MODDING / DEBUG ASSIST");
-                warpButton.OnClick += OnButtonClicked;
+                warpButton.OnClick += ModUI.OpenMenu;
             };
-        }
-        private void OnButtonClicked()
-        {
-            if (warping) return;
-            ModUI.OpenMenu();
         }
 
         private void FindReferences()
         {
-            ClosePauseMenuAction = Resources.FindObjectsOfTypeAll<SubmitActionCloseMenu>().First(obj => obj.gameObject.name == "Button-Unpause");
-
             itemDropSocket = new("ItemDropSocket");
             itemDropSocket.transform.SetParent(GameObject.Find("Sector_DreamWorld").transform);
             lantern = GameObject.Find("Prefab_IP_DreamLanternItem_2").GetComponent<DreamLanternItem>();
@@ -191,11 +183,11 @@ namespace DWModAssist
 
 
         //-----WARP-----
-        public void EngageWarp(DestinationZone destinationZone, bool sleepAtSafeFire, int locationIndex) 
+        public void EngageWarp(DestinationZone destinationZone, bool sleepAtSafeFire, bool enterByDeath, int locationIndex) 
         {
             var zoneIndex = (int)destinationZone - 1;
             var campfireIndex = sleepAtSafeFire ? (int)DestinationZone.Zone3 - 1 : zoneIndex;
-            StartCoroutine(WarpToPlace(zoneIndex, campfireIndex, locationIndex)); 
+            StartCoroutine(WarpToPlace(zoneIndex, campfireIndex, locationIndex, enterByDeath)); 
         }
 
         private void GiveLantern(Vector3 worldDestinationPosition)
@@ -212,21 +204,22 @@ namespace DWModAssist
             itemTool.PickUpItemInstantly(lantern);
         }
 
-        private IEnumerator WarpToPlace(int zoneIndex, int campfireIndex, int locationIndex)
+        private IEnumerator WarpToPlace(int zoneIndex, int campfireIndex, int locationIndex, bool enterByDeath)
         {
-            warping = true;
-
             var campfire = Locator.GetDreamCampfire(zones[campfireIndex]);
             var arrivalPoint = Locator.GetDreamArrivalPoint(zones[zoneIndex]);
             var relativeLocationData = locationsCollection[zoneIndex][locationIndex];
 
             GiveLantern(arrivalPoint.transform.TransformPoint(relativeLocationData.localPosition));
+            if (PlayerState._isAttached) CurrentAttachPoint.DetachPlayer();
 
+            PlayerState._isResurrected = false;
             Locator.GetDreamWorldController().ExitDreamWorld();
             while (Locator.GetDreamWorldController().IsInDream()) yield return null;
             Locator.GetDreamWorldController().EnterDreamWorld(campfire, arrivalPoint, relativeLocationData);
             yield return new WaitForFixedUpdate();
             Locator.GetDreamWorldController()._relativeSleepLocation.localPosition = locationsCollection[campfireIndex][0].localPosition;
+            PlayerState._isResurrected = enterByDeath;
 
             foreach (var volume in arrivalPoint._entrywayVolumes) volume.RemoveAllObjectsFromVolume();
             List<OWTriggerVolume> volumes = new();
@@ -253,7 +246,7 @@ namespace DWModAssist
                     }
                     break;
                 case (int)DestinationZone.Zone4:
-                    if (locationIndex is (int)LocationZone4.DreamFireChamber)
+                    if (locationIndex is (int)LocationZone4.DreamFire)
                     {
                         volumes.Add(zone4FireChamber);
                     }
@@ -273,12 +266,10 @@ namespace DWModAssist
                 volume.AddObjectToVolume(Locator.GetPlayerCameraDetector().gameObject);
                 volume.AddObjectToVolume(lantern.GetFluidDetector().gameObject);
             }
-
-            warping = false;
         }
 
 
-        //-----ALTER DREAM WORLD STATE-----
+        //-----ALTER ZONE STATE-----
         public static void OpenZone1Dock() { zone1DoorProjector.SetLit(false); }
 
         public static void OpenZone2Dock() { zone2DockProjector.SetLit(true); }
@@ -307,16 +298,4 @@ namespace DWModAssist
             vaultController.OnPressInteract();
         }
     }
-
-    /*[HarmonyPatch]
-    public class Patches
-    {
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(OWTriggerVolume), nameof(OWTriggerVolume.AddObjectToVolume))]
-        public static void aaaaaa_Postfix(OWTriggerVolume __instance, GameObject hitObj)
-        {
-            if (hitObj.CompareTag("PlayerDetector"))
-                DWModAssist.ModInstance.ModHelper.Console.WriteLine($"Player has entered {__instance.gameObject.name}");
-        }
-    }*/
 }

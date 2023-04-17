@@ -10,10 +10,11 @@ namespace DWModAssist
     public class ModUI
     {
         private static GameObject refButton, refSelector, refToggle;
+        private static SubmitActionCloseMenu closePauseMenuAction;
 
         private static PopupMenu menu;
         private static OptionsSelectorElement zoneSelector;
-        private static ToggleElement safeFireToggle;
+        private static ToggleElement safeFireToggle, deathToggle;
         private static List<MenuOption> menuOptions = new();
 
         private static DestinationZone selectedZone = DestinationZone.Zone1;
@@ -52,11 +53,13 @@ namespace DWModAssist
         public static void CloseMenu() 
         {
             menu.EnableMenu(false);
-            DWModAssist.ClosePauseMenuAction.Submit();
+            closePauseMenuAction.Submit();
         }
 
         public static void CreateMenu()
         {
+            closePauseMenuAction = Resources.FindObjectsOfTypeAll<SubmitActionCloseMenu>().First(obj => obj.gameObject.name == "Button-Unpause");
+
             if (menu != null) return;
             menuOptions.Clear();
 
@@ -69,7 +72,7 @@ namespace DWModAssist
 
             menuObj.transform.Find("PopupBlock/BackingImage").gameObject.GetComponent<RectTransform>().sizeDelta = new(0, 100);
             menuObj.transform.Find("PopupBlock/BorderImage").gameObject.GetComponent<RectTransform>().sizeDelta = new(0, 100);
-            menuObj.transform.Find("PopupBlock").gameObject.GetComponent<RectTransform>().sizeDelta += new Vector2(0, 100);
+            menuObj.transform.Find("PopupBlock").gameObject.GetComponent<RectTransform>().sizeDelta += new Vector2(0, 120);
             var menuLayout = GameObject.Instantiate(DWModAssist.ModInstance.ModHelper.Assets.LoadBundle("Menu/menu_layout").LoadAsset<GameObject>("Assets/MenuLayout.prefab"), menuObj.transform.Find("PopupBlock"));
 
             Transform headOptions = null, warpButtonSocket = null, cancelButtonSocket = null, zone1SubMenu = null, zone2SubMenu = null, zone3SubMenu = null, zone4SubMenu = null;
@@ -88,6 +91,7 @@ namespace DWModAssist
             zoneSelector = AddSelector<DestinationZone>(headOptions, "Select a Zone");
             zoneSelector.OnValueChanged += OnNewZoneSelected;
             safeFireToggle = AddToggle(headOptions, "Sleep at Safe Fire", 1);
+            deathToggle = AddToggle(headOptions, "Enter by Death", 0);
 
             subMenus[DestinationZone.Zone1] = SetupZoneMenu<LocationZone1>(zone1SubMenu, DWModAssist.zone1AlterStates);
             subMenus[DestinationZone.Zone2] = SetupZoneMenu<LocationZone2>(zone2SubMenu, DWModAssist.zone2AlterStates);
@@ -127,7 +131,7 @@ namespace DWModAssist
         private static void OnWarp() 
         { 
             CloseMenu();
-            DWModAssist.ModInstance.EngageWarp(selectedZone, safeFireToggle.GetValueAsBool(), subMenus[selectedZone].GetSelectedLocationIndex());
+            DWModAssist.ModInstance.EngageWarp(selectedZone, safeFireToggle.GetValueAsBool(), deathToggle.GetValueAsBool(), subMenus[selectedZone].GetSelectedLocationIndex());
         }
 
         private static void OnCancel() 

@@ -14,7 +14,7 @@
         RaftProjector,
         Bridge,
         Village,
-        OutsidePartyHouse,
+        PartyOutside,
         ArchiveElevator
     }
     public enum LocationZone2
@@ -23,7 +23,7 @@
         RaftProjector,
         LightsProjector,
         SecretTowerRoom,
-        RaftToBurntHouse,
+        BurntHouseRaft,
         Underground,
         ArchiveElevator
     }
@@ -38,9 +38,9 @@
     }
     public enum LocationZone4
     {
-        DreamFireChamber,
-        RaftProjectorOutside,
-        VaultOpeningMechanism,
+        DreamFire,
+        RaftProjector,
+        VaultOutside,
         LockProjector1,
         LockProjector2,
         LockProjector3,
