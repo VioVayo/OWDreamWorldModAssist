@@ -98,8 +98,8 @@ namespace DWModAssist
             subMenus[DestinationZone.Zone3] = SetupZoneMenu<LocationZone3>(zone3SubMenu, DWModAssist.zone3AlterStates);
             subMenus[DestinationZone.Zone4] = SetupZoneMenu<LocationZone4>(zone4SubMenu, DWModAssist.zone4AlterStates);
 
-            var warpButton = AddButton(warpButtonSocket, "GO TO DREAM", OnWarp);
-            var cancelButton = AddButton(cancelButtonSocket, "CANCEL", OnCancel);
+            var warpButton = AddButton(warpButtonSocket, "GO TO DREAM", OnWarp, false);
+            var cancelButton = AddButton(cancelButtonSocket, "CANCEL", OnCancel, false);
 
             GameObject.Destroy(menuObj.transform.Find("PopupBlock/PopupElements").gameObject);
             foreach (var localiser in menuObj.GetComponentsInChildren<LocalizedText>()) GameObject.Destroy(localiser);
@@ -144,7 +144,7 @@ namespace DWModAssist
         {
             var selector = AddSelector<T>(transform.Find("Header/LocationSelectorSocket"), "Arrival Location");
             transform.gameObject.GetComponentsInChildren<Transform>().First(obj => obj.gameObject.name == "LineBreak_Dots").gameObject.SetActive(false);
-            foreach (var alterState in alterStates) AddButton(transform, alterState.Item1, alterState.Item2);
+            foreach (var alterState in alterStates) AddButton(transform, alterState.Item1, alterState.Item2, true);
             return new(transform.gameObject, typeof(T), selector);
         }
 
@@ -169,12 +169,13 @@ namespace DWModAssist
             return toggle;
         }
 
-        private static GameObject AddButton(Transform transform, string text, UnityAction action)
+        private static GameObject AddButton(Transform transform, string text, UnityAction action, bool addSound)
         {
             var button = GameObject.Instantiate(refButton, transform);
             button.GetComponent<ButtonWithHotkeyImageElement>().SetPrompt(new ScreenPrompt(text));
             button.GetComponent<UIStyleApplier>()._buttonItem = true;
             button.GetComponent<Button>().onClick.AddListener(action);
+            if (addSound) button.GetComponent<Button>().onClick.AddListener(() => { Locator.GetMenuAudioController().PlayOptionToggle(); });
             menuOptions.Add(button.AddComponent<MenuOption>());
             return button;
         }
