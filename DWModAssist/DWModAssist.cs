@@ -22,41 +22,41 @@ namespace DWModAssist
         private static RelativeLocationData[] 
             locationsZone1 =
             {
-                new RelativeLocationData(new Vector3(0, 10.25f, 0), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFireHouse
-                new RelativeLocationData(new Vector3(-61, 10.2f, 38.5f), new Quaternion(0, -0.4f, 0, 0.9f), Vector3.zero), //RaftProjector
-                new RelativeLocationData(new Vector3(5, 13.2f, 110), new Quaternion(0, 0.4f, 0, -0.9f), Vector3.zero), //Bridge
-                new RelativeLocationData(new Vector3(-115, 11.5f, 137), new Quaternion(0, 0.7f, 0, 0.7f), Vector3.zero), //Village
-                new RelativeLocationData(new Vector3(55, 11.2f, 170), new Quaternion(0, 0.9f, 0, 0.5f), Vector3.zero), //PartyOutside
-                new RelativeLocationData(new Vector3(117, 19.25f, 167), new Quaternion(0, 0.5f, 0, 0.9f), Vector3.zero) //ArchiveElevator
+                new RelativeLocationData(new Vector3(0, 10.65f, 0), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFireHouse
+                new RelativeLocationData(new Vector3(-61, 10.1f, 38.5f), new Quaternion(0, -0.4f, 0, 0.9f), Vector3.zero), //RaftProjector
+                new RelativeLocationData(new Vector3(5, 13.62f, 110), new Quaternion(0, 0.4f, 0, -0.9f), Vector3.zero), //Bridge
+                new RelativeLocationData(new Vector3(-115, 11.6f, 137), new Quaternion(0, 0.7f, 0, 0.7f), Vector3.zero), //Village
+                new RelativeLocationData(new Vector3(55, 11.35f, 170), new Quaternion(0, 0.9f, 0, 0.5f), Vector3.zero), //PartyOutside
+                new RelativeLocationData(new Vector3(117, 19.75f, 167), new Quaternion(0, 0.5f, 0, 0.9f), Vector3.zero) //ArchiveElevator
             }, 
             locationsZone2 =
             {
-                new RelativeLocationData(new Vector3(0, 10.25f, 0), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFireHouse
-                new RelativeLocationData(new Vector3(-38, -2.5f, 2), new Quaternion(0, 0.6f, 0, 0.8f), Vector3.zero), //RaftProjector
-                new RelativeLocationData(new Vector3(48.5f, 21.25f, 153), new Quaternion(0, 0.6f, 0, 0.8f), Vector3.zero), //LightsProjector
-                new RelativeLocationData(new Vector3(5.5f, 30f, 0.5f), new Quaternion(0, 0.7f, 0, -0.7f), Vector3.zero), //SecretTowerRoom
-                new RelativeLocationData(new Vector3(59, -2.5f, 182), new Quaternion(0, 0.5f, 0, 0.9f), Vector3.zero), //BurntHouseRaft
-                new RelativeLocationData(new Vector3(-7.3f, -20, 105), new Quaternion(0, 0.1f, 0, -1), Vector3.zero), //Underground
-                new RelativeLocationData(new Vector3(-35, -56.75f, 216), new Quaternion(0, 0.1f, 0, -1), Vector3.zero) //ArchiveElevator
+                new RelativeLocationData(new Vector3(0, 10.6f, 0), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFireHouse
+                new RelativeLocationData(new Vector3(-38, -2.4f, 2), new Quaternion(0, 0.6f, 0, 0.8f), Vector3.zero), //RaftProjector
+                new RelativeLocationData(new Vector3(48.5f, 21.7f, 153), new Quaternion(0, 0.6f, 0, 0.8f), Vector3.zero), //LightsProjector
+                new RelativeLocationData(new Vector3(5.5f, 30.4f, 0.5f), new Quaternion(0, 0.7f, 0, -0.7f), Vector3.zero), //SecretTowerRoom
+                new RelativeLocationData(new Vector3(59, -2.4f, 182), new Quaternion(0, 0.5f, 0, 0.9f), Vector3.zero), //BurntHouseRaft
+                new RelativeLocationData(new Vector3(-7.3f, -20.4f, 105), new Quaternion(0, 0.1f, 0, -1), Vector3.zero), //Underground
+                new RelativeLocationData(new Vector3(-35, -56.4f, 216), new Quaternion(0, 0.1f, 0, -1), Vector3.zero) //ArchiveElevator
             }, 
             locationsZone3 =
             {
-                new RelativeLocationData(new Vector3(0, 10.25f, 0), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFireHouse
-                new RelativeLocationData(new Vector3(25, -80.75f, 72.5f), new Quaternion(0, 0.9f, 0, -0.4f), Vector3.zero), //RaftProjector
-                new RelativeLocationData(new Vector3(-55, 15.5f, 71.5f), new Quaternion(0, 0.7f, 0, 0.7f), Vector3.zero), //Stage
-                new RelativeLocationData(new Vector3(-86.5f, -6.75f, 85), new Quaternion(0, 0.9f, 0, 0.4f), Vector3.zero), //TheatreBalcony
-                new RelativeLocationData(new Vector3(-27, -15.5f, 90.5f), new Quaternion(0, 0.9f, 0, 0.4f), Vector3.zero), //Ballroom
-                new RelativeLocationData(new Vector3(2, -18.75f, 11), new Quaternion(0, 1, 0, 0), Vector3.zero) //ArchiveElevator
+                new RelativeLocationData(new Vector3(0, 10.6f, 0), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFireHouse
+                new RelativeLocationData(new Vector3(25, -80.4f, 72.5f), new Quaternion(0, 0.9f, 0, -0.4f), Vector3.zero), //RaftProjector
+                new RelativeLocationData(new Vector3(-55, 16, 71.5f), new Quaternion(0, 0.7f, 0, 0.7f), Vector3.zero), //Stage
+                new RelativeLocationData(new Vector3(-86.5f, -6.4f, 85), new Quaternion(0, 0.9f, 0, 0.4f), Vector3.zero), //TheatreBalcony
+                new RelativeLocationData(new Vector3(-27, -15.96f, 90.5f), new Quaternion(0, 0.9f, 0, 0.4f), Vector3.zero), //Ballroom
+                new RelativeLocationData(new Vector3(2, -18.4f, 11), new Quaternion(0, 1, 0, 0), Vector3.zero) //ArchiveElevator
             }, 
             locationsZone4 =
             {
-                new RelativeLocationData(new Vector3(0, 1, -2), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFire
-                new RelativeLocationData(new Vector3(10.5f, -17.75f, 62.5f), new Quaternion(0, 0.9f, 0, 0.4f), Vector3.zero), //RaftProjector
-                new RelativeLocationData(new Vector3(23, -309.25f, 0), new Quaternion(0, -0.7f, 0, 0.7f), Vector3.zero), //VaultOutside
-                new RelativeLocationData(new Vector3(76, -309, 64), new Quaternion(0, 0.9f, 0, -0.4f), Vector3.zero), //LockProjector1
-                new RelativeLocationData(new Vector3(99.5f, -313.25f, 0), new Quaternion(0, -0.7f, 0, 0.7f), Vector3.zero), //LockProjector2
-                new RelativeLocationData(new Vector3(77.5f, -308.75f, -65), new Quaternion(0, -0.4f, 0, 0.9f), Vector3.zero), //LockProjector3
-                new RelativeLocationData(new Vector3(-77, -377.5f, 0), new Quaternion(0, 0.7f, 0, 0.7f), Vector3.zero) //PrisonerCell
+                new RelativeLocationData(new Vector3(0, 0.6f, -2), new Quaternion(0, 0, 0, 1), Vector3.zero), //DreamFire
+                new RelativeLocationData(new Vector3(10.5f, -17.25f, 62.5f), new Quaternion(0, 0.9f, 0, 0.4f), Vector3.zero), //RaftProjector
+                new RelativeLocationData(new Vector3(23, -308.7f, 0), new Quaternion(0, -0.7f, 0, 0.7f), Vector3.zero), //VaultOutside
+                new RelativeLocationData(new Vector3(76, -308.6f, 64), new Quaternion(0, 0.9f, 0, -0.4f), Vector3.zero), //LockProjector1
+                new RelativeLocationData(new Vector3(99.5f, -312.77f, 0), new Quaternion(0, -0.7f, 0, 0.7f), Vector3.zero), //LockProjector2
+                new RelativeLocationData(new Vector3(77.5f, -308.27f, -65), new Quaternion(0, -0.4f, 0, 0.9f), Vector3.zero), //LockProjector3
+                new RelativeLocationData(new Vector3(-77, -377.1f, 0), new Quaternion(0, 0.7f, 0, 0.7f), Vector3.zero) //PrisonerCell
             };
         private static RelativeLocationData[][] locationsCollection = { locationsZone1, locationsZone2, locationsZone3, locationsZone4 };
 
@@ -112,7 +112,12 @@ namespace DWModAssist
             lock2Projector,
             lock3Projector;
 
-        public static PlayerAttachPoint CurrentAttachPoint;
+        private static ShipCockpitController cockpitController;
+        public static Campfire LastUsedCampfire;
+        public static NomaiRemoteCameraPlatform LastUsedProjectionPool;
+        public static SlideProjector LastUsedSlideProjector;
+        public static Peephole LastUsedPeephole;
+        public static PlayerAttachPoint LastAttachedPoint;
 
 
         private void Awake()
@@ -179,6 +184,8 @@ namespace DWModAssist
                 else if (name == "Prefab_IP_DreamObjectProjector (3)") lock2Projector = projector;
                 else if (name == "Prefab_IP_DreamObjectProjector (2)" && projector.gameObject.transform.parent.gameObject.name == "Interactibles_Island_C") lock3Projector = projector;
             }
+
+            cockpitController = FindObjectOfType<ShipCockpitController>();
         }
 
 
@@ -204,21 +211,43 @@ namespace DWModAssist
             itemTool.PickUpItemInstantly(lantern);
         }
 
+        private IEnumerator ResetPlayerState()
+        {
+            if (PlayerState.AtFlightConsole()) cockpitController.ExitFlightConsole();
+            if (LastUsedCampfire != null)
+            {
+                LastUsedCampfire.StopRoasting();
+                LastUsedCampfire.StopSleeping();
+            }
+            if (LastUsedProjectionPool != null && LastUsedProjectionPool.IsPlatformActive())
+            {
+                LastUsedProjectionPool.OnLeaveBounds();
+                while (PlayerState.UsingNomaiRemoteCamera()) yield return null;
+            }
+            if (PlayerState.IsViewingProjector()) LastUsedSlideProjector.CancelInteraction();
+            if (PlayerState.IsPeeping()) LastUsedPeephole.Unpeep();
+            if (PlayerState.IsAttached()) LastAttachedPoint.DetachPlayer();
+            Locator.GetPlayerTransform().GetRequiredComponent<PlayerLockOnTargeting>().BreakLock();
+            OWInput.ChangeInputMode(InputMode.Character);
+
+            PlayerState._isResurrected = false;
+            Locator.GetDreamWorldController().ExitDreamWorld();
+            while (Locator.GetDreamWorldController().IsInDream()) yield return null;
+        }
+
         private IEnumerator WarpToPlace(int zoneIndex, int campfireIndex, int locationIndex, bool enterByDeath)
         {
             var campfire = Locator.GetDreamCampfire(zones[campfireIndex]);
             var arrivalPoint = Locator.GetDreamArrivalPoint(zones[zoneIndex]);
             var relativeLocationData = locationsCollection[zoneIndex][locationIndex];
 
-            GiveLantern(arrivalPoint.transform.TransformPoint(relativeLocationData.localPosition));
-            if (PlayerState._isAttached) CurrentAttachPoint.DetachPlayer();
+            GiveLantern(arrivalPoint.transform.TransformPoint(relativeLocationData.localPosition - new Vector3(0, 0.5f, 0)));
+            yield return StartCoroutine(ResetPlayerState());
 
-            PlayerState._isResurrected = false;
-            Locator.GetDreamWorldController().ExitDreamWorld();
-            while (Locator.GetDreamWorldController().IsInDream()) yield return null;
             Locator.GetDreamWorldController().EnterDreamWorld(campfire, arrivalPoint, relativeLocationData);
             yield return new WaitForFixedUpdate();
             Locator.GetDreamWorldController()._relativeSleepLocation.localPosition = locationsCollection[campfireIndex][0].localPosition;
+
             PlayerState._isResurrected = enterByDeath;
 
             foreach (var volume in arrivalPoint._entrywayVolumes) volume.RemoveAllObjectsFromVolume();
@@ -235,14 +264,14 @@ namespace DWModAssist
                     }
                     break;
                 case (int)DestinationZone.Zone3:
-                    if (locationIndex is (int)LocationZone3.TheatreBalcony or (int)LocationZone3.Ballroom)
-                    {
-                        volumes.Add(zone3Interior);
-                    }
                     if (locationIndex is (int)LocationZone3.TheatreBalcony)
                     {
                         volumes.Add(zone3Depths);
                         volumes.Add(zone3Courtyard);
+                    }
+                    if (locationIndex is (int)LocationZone3.TheatreBalcony or (int)LocationZone3.Ballroom)
+                    {
+                        volumes.Add(zone3Interior);
                     }
                     break;
                 case (int)DestinationZone.Zone4:
@@ -266,6 +295,8 @@ namespace DWModAssist
                 volume.AddObjectToVolume(Locator.GetPlayerCameraDetector().gameObject);
                 volume.AddObjectToVolume(lantern.GetFluidDetector().gameObject);
             }
+
+            Locator.GetCloakFieldController().OnPlayerEnter.Invoke();
         }
 
 
@@ -297,5 +328,15 @@ namespace DWModAssist
             lock3Projector.SetLit(false);
             vaultController.OnPressInteract();
         }
+
+
+        /*private void Update() //For Debug
+        {
+            if (OWInput.IsNewlyPressed(InputLibrary.interactSecondary)) 
+            { 
+                foreach (var sector in Locator.GetPlayerSectorDetector()._sectorList) 
+                    ModHelper.Console.WriteLine($"{sector.gameObject.name}"); 
+            }
+        }*/
     }
 }
