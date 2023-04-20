@@ -213,17 +213,17 @@ namespace DWModAssist
 
         private IEnumerator ResetPlayerState()
         {
-            if (PlayerState.AtFlightConsole()) cockpitController.ExitFlightConsole();
-            if (LastUsedCampfire != null)
-            {
-                LastUsedCampfire.StopRoasting();
-                LastUsedCampfire.StopSleeping();
-            }
             if (LastUsedProjectionPool != null && LastUsedProjectionPool.IsPlatformActive())
             {
                 LastUsedProjectionPool.OnLeaveBounds();
                 while (PlayerState.UsingNomaiRemoteCamera()) yield return null;
             }
+            if (LastUsedCampfire != null)
+            {
+                LastUsedCampfire.StopRoasting();
+                LastUsedCampfire.StopSleeping();
+            }
+            if (PlayerState.AtFlightConsole()) cockpitController.ExitFlightConsole();
             if (PlayerState.IsViewingProjector()) LastUsedSlideProjector.CancelInteraction();
             if (PlayerState.IsPeeping()) LastUsedPeephole.Unpeep();
             if (PlayerState.IsAttached()) LastAttachedPoint.DetachPlayer();
