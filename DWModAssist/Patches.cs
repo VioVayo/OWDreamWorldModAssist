@@ -48,6 +48,14 @@ namespace DWModAssist
             DWModAssist.LastAttachedPoint = __instance;
         }
 
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(RingWorldController), nameof(RingWorldController.OnExitDreamWorld))]
+        public static void RingWorldController_OnExitDreamWorld_Postfix()
+        {
+            Locator.GetCloakFieldController().OnPlayerEnter.Invoke();
+        }
+
         [HarmonyPrefix] //Don't add player to AudioVolumes they don't spawn inside of
         [HarmonyPatch(typeof(DreamCampfire), nameof(DreamCampfire.OnExitDreamWorld))]
         public static bool DreamCampfire_OnExitDreamWorld_Prefix(DreamCampfire __instance)
@@ -56,6 +64,7 @@ namespace DWModAssist
             var distance = Vector3.Distance(Locator.GetPlayerTransform().position, receiver.gameObject.transform.position);
             return (distance < receiver._interactRange * 2.5f);
         }
+
 
         /*[HarmonyPostfix] //For Debug
         [HarmonyPatch(typeof(OWTriggerVolume), nameof(OWTriggerVolume.AddObjectToVolume))]

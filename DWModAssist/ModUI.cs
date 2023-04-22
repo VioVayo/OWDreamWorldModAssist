@@ -12,7 +12,7 @@ namespace DWModAssist
         private static GameObject refButton, refSelector, refToggle;
         private static SubmitActionCloseMenu closePauseMenuAction;
 
-        private static PopupMenu menu;
+        private static Menu menu;
         private static OptionsSelectorElement zoneSelector;
         private static ToggleElement safeFireToggle, deathToggle;
         private static List<MenuOption> menuOptions = new();
@@ -47,7 +47,7 @@ namespace DWModAssist
         {
             menu.EnableMenu(true);
             UpdateNavigation();
-            zoneSelector._selectable.Select();
+            Locator.GetMenuInputModule().SelectOnNextUpdate(zoneSelector._selectable);
         }
 
         public static void CloseMenu() 
@@ -108,10 +108,11 @@ namespace DWModAssist
             subMenus[DestinationZone.Zone3].SetSubMenuEnabled(false);
             subMenus[DestinationZone.Zone4].SetSubMenuEnabled(false);
 
-            menu = menuObj.GetComponent<PopupMenu>();
-            menu._okAction = warpButton.GetComponent<SubmitAction>();
-            menu._cancelAction = cancelButton.GetComponent<SubmitAction>();
-            menu.InitializeMenu();
+            GameObject.Destroy(menuObj.GetComponent<PopupMenu>());
+            menu = menuObj.AddComponent<Menu>();
+            menu._menuActivationRoot = menuObj;
+            menu._menuOptions = new MenuOption[0];
+            menu.gameObject.AddComponent<GraphicRaycaster>();
         }
 
 

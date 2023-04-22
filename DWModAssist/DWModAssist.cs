@@ -295,8 +295,6 @@ namespace DWModAssist
                 volume.AddObjectToVolume(Locator.GetPlayerCameraDetector().gameObject);
                 volume.AddObjectToVolume(lantern.GetFluidDetector().gameObject);
             }
-
-            Locator.GetCloakFieldController().OnPlayerEnter.Invoke();
         }
 
 
