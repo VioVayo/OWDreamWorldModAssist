@@ -206,7 +206,12 @@ namespace DWModAssist
             {
                 if (Locator.GetToolModeSwapper().GetToolMode() != ToolMode.Item) Locator.GetToolModeSwapper().UnequipTool();
                 else if (itemTool.GetHeldItemType() == ItemType.DreamLantern) return;
-                else itemTool.DropItemInstantly(Locator.GetDreamWorldController()._dreamWorldSector, itemDropSocket.transform);
+                else 
+                {
+                    var item = itemTool.GetHeldItem();
+                    itemTool.DropItemInstantly(Locator.GetDreamWorldController()._dreamWorldSector, itemDropSocket.transform);
+                    item.gameObject.transform.SetParent(itemDropSocket.transform.parent, true);
+                }
             }
             itemTool.PickUpItemInstantly(lantern);
         }
@@ -242,7 +247,7 @@ namespace DWModAssist
             var relativeLocationData = locationsCollection[zoneIndex][locationIndex];
 
             GiveLantern(arrivalPoint.transform.TransformPoint(relativeLocationData.localPosition - new Vector3(0, 0.5f, 0)));
-            yield return StartCoroutine(ResetPlayerState());
+            yield return ResetPlayerState();
 
             Locator.GetDreamWorldController().EnterDreamWorld(campfire, arrivalPoint, relativeLocationData);
             yield return new WaitForFixedUpdate();
@@ -283,6 +288,8 @@ namespace DWModAssist
                     {
                         volumes.Add(zone4PrisonCell);
                         volumes.Add(zone4PrisonCellAir);
+                        volumes.Add(vaultController._tunnelEntrywayTrigger);
+                        vaultController._tunnelEntrywayTrigger.SetTriggerActivation(true);
                         cellevator.CallToBottomFloor();
                         cellevator.TryOpenDoor();
                     }
