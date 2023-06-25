@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace DWModAssist
 {
@@ -131,16 +132,21 @@ namespace DWModAssist
             LoadManager.OnCompleteSceneLoad += (scene, loadScene) => 
             {
                 if (loadScene != OWScene.SolarSystem) return;
-                FindReferences();
                 ModUI.CreateMenu();
+                AddButtonToPauseMenu();
+                FindReferences();
             };
+        }
 
-            ModHelper.Menus.PauseMenu.OnInit += () =>
-            {
-                if (LoadManager.GetCurrentScene() != OWScene.SolarSystem) return;
-                var warpButton = ModHelper.Menus.PauseMenu.OptionsButton.Duplicate("DW MODDING / DEBUG ASSIST");
-                warpButton.OnClick += ModUI.OpenMenu;
-            };
+        private void AddButtonToPauseMenu()
+        {
+            var refButton = GameObject.Find("PauseMenuBlock").transform.Find("PauseMenuItems/PauseMenuItemsLayout/Button-Options");
+            var warpButton = GameObject.Instantiate(refButton, refButton.transform.parent);
+            warpButton.transform.SetSiblingIndex(refButton.transform.GetSiblingIndex() + 1);
+            warpButton.GetComponent<Button>().onClick.AddListener(ModUI.OpenMenu);
+            warpButton.GetComponent<UIStyleApplier>()._textItems[0].text = "DW MODDING / DEBUG ASSIST";
+            GameObject.Destroy(warpButton.GetComponentInChildren<LocalizedText>());
+            GameObject.Destroy(warpButton.GetComponent<SubmitActionMenu>());
         }
 
         private void FindReferences()

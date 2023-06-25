@@ -99,7 +99,7 @@ namespace DWModAssist
             subMenus[DestinationZone.Zone4] = SetupZoneMenu<LocationZone4>(zone4SubMenu, DWModAssist.zone4AlterStates);
 
             var warpButton = AddButton(warpButtonSocket, "GO TO DREAM", OnWarp, false);
-            var cancelButton = AddButton(cancelButtonSocket, "CANCEL", OnCancel, false);
+            var cancelButton = AddButton(cancelButtonSocket, "CLOSE MENU", OnCancel, false);
 
             GameObject.Destroy(menuObj.transform.Find("PopupBlock/PopupElements").gameObject);
             foreach (var localiser in menuObj.GetComponentsInChildren<LocalizedText>()) GameObject.Destroy(localiser);
@@ -116,7 +116,7 @@ namespace DWModAssist
         }
 
 
-        private static void OnNewZoneSelected(int irrelevant)
+        private static void OnNewZoneSelected(int _)
         {
             subMenus[selectedZone].SetSubMenuEnabled(false);
             selectedZone = (DestinationZone)Enum.Parse(typeof(DestinationZone), zoneSelector.GetSelectedOption());
@@ -176,7 +176,8 @@ namespace DWModAssist
             button.GetComponent<ButtonWithHotkeyImageElement>().SetPrompt(new ScreenPrompt(text));
             button.GetComponent<UIStyleApplier>()._buttonItem = true;
             button.GetComponent<Button>().onClick.AddListener(action);
-            if (addSound) button.GetComponent<Button>().onClick.AddListener(() => { Locator.GetMenuAudioController().PlayOptionToggle(); });
+            if (addSound) button.GetComponent<Button>().onClick.AddListener(() => { Locator.GetMenuAudioController().PlayOptionToggle(); }); 
+            //can't subscribe PlayOptionToggle() directly at this time bc Locator hasn't done its thing yet
             menuOptions.Add(button.AddComponent<MenuOption>());
             return button;
         }
