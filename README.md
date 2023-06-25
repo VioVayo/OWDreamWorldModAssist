@@ -1,3 +1,4 @@
+#### BEWARE! DLC SPOILERS AHEAD!  
 # Outer Wilds - Dream World Modding and Debug Assist
  Are you modding content in the Dream World? Have you had it up to here with making the long trip there every time you want to test a code revision?  
  Yeah, me too.
@@ -9,4 +10,4 @@ This mod adds an extra button to the pause menu. Clicking it will open a menu th
 - <b>Enter by Death:</b> If this is enabled when you travel using this mod, the game will treat it as though you entered the Dream World by dying. Disabling it and travelling using this mod has the opposite effect.
 - <b>Arrival Location:</b> Pick where in the currently selected zone the teleport will take you.
 - <b>The buttons underneath</b> can be used to instantly trigger certain events, such as waking the ghosts in an area. Undoing these requires a loop reset.
-- <b>Go to Dream</b> teleports you to the selected location, <b>Cancel</b> closes the menu.
+- <b>Go to Dream</b> teleports you to the selected location, <b>Close Menu</b> closes the menu.
