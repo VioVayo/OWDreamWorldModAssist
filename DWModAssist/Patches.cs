@@ -49,14 +49,14 @@ namespace DWModAssist
         }
 
 
-        [HarmonyPostfix]
+        [HarmonyPostfix] //Make it so the Stranger loads properly even if the player didn't enter it normally
         [HarmonyPatch(typeof(RingWorldController), nameof(RingWorldController.OnExitDreamWorld))]
         public static void RingWorldController_OnExitDreamWorld_Postfix()
         {
             Locator.GetCloakFieldController().OnPlayerEnter.Invoke();
         }
 
-        [HarmonyPrefix] //Don't add player to AudioVolumes they don't spawn inside of
+        [HarmonyPrefix] //Don't add player to AudioVolumes they don't spawn inside of, spawn location is generally above the fire chambers as opposed to inside them
         [HarmonyPatch(typeof(DreamCampfire), nameof(DreamCampfire.OnExitDreamWorld))]
         public static bool DreamCampfire_OnExitDreamWorld_Prefix(DreamCampfire __instance)
         {

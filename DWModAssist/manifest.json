@@ -4,7 +4,7 @@
   "author": "VioVayo",
   "name": "Dream World Modding and Debug Assist",
   "uniqueName": "VioVayo.DWModAssist",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "owmlVersion": "2.9.0",
   "dependencies": []
 }
