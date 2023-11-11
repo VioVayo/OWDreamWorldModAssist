@@ -179,7 +179,7 @@ namespace DWModAssist
                     return;
                 }
             }
-            ModHelper.Console.WriteLine("Cannot warp to invalid " + zone + " location.", MessageType.Error);
+            ModHelper.Console.WriteLine($"Cannot warp to invalid {zone} location.", MessageType.Error);
         }
 
         private void GiveLantern()
