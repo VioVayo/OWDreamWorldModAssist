@@ -43,7 +43,7 @@ namespace DWModAssist
                 ("Open Sealed Vault", DWModAssist.OpenVault)
             };
 
-        public class ZoneSubMenu
+        private class ZoneSubMenu
         {
             public GameObject GameObject;
             public Type LocationEnumType;
@@ -86,8 +86,9 @@ namespace DWModAssist
             var menuObj = GameObject.Instantiate(refMenu, refMenu.transform.parent);
 
             refButton = menuObj.transform.Find("PopupBlock/PopupElements/Buttons/UIElement-ButtonConfirm").gameObject;
-            refSelector = Resources.FindObjectsOfTypeAll<OptionsSelectorElement>().First(obj => obj.gameObject.name == "UIElement-ButtonImages").gameObject;
-            refToggle = Resources.FindObjectsOfTypeAll<ToggleElement>().First(obj => obj.gameObject.name == "UIElement-ToggleVibration").gameObject;
+            var optionsCanvas = GameObject.Find("OptionsCanvas");
+            refSelector = optionsCanvas.GetComponentsInChildren<Transform>(true).FirstOrDefault(obj => obj.gameObject.name == "UIElement-ButtonImages").gameObject;
+            refToggle = optionsCanvas.GetComponentsInChildren<Transform>(true).FirstOrDefault(obj => obj.gameObject.name == "UIElement-ToggleVibration").gameObject;
 
             menuObj.transform.Find("PopupBlock/BackingImage").gameObject.GetComponent<RectTransform>().sizeDelta = new(0, 100);
             menuObj.transform.Find("PopupBlock/BorderImage").gameObject.GetComponent<RectTransform>().sizeDelta = new(0, 100);
